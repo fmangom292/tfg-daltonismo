@@ -1,8 +1,17 @@
 <div class="home-container">
-    <h1 class="home-title">TFG Alba Gallardo García</h1>
-    <div class="button-group">
-      <button class="home-button" [routerLink]="'/test-tiempo-reaccion'">Estudio de tiempo de reacción visual</button>
-      <button class="home-button">Ilusión de Müller-Lyer</button>
-      <button class="home-button">Ilusión líneas VH</button>
-    </div>
+  <h1 class="home-title">TFG Alba Gallardo García</h1>
+  <div class="button-group">
+      <div class="button-wrapper">
+          <button class="home-button" [routerLink]="'/test-tiempo-reaccion'">Estudio de tiempo de reacción visual</button>
+          <button class="settings-button" (click)="openTiempoReaccionConfigDialog()">⚙️</button>
+      </div>
+      <div class="button-wrapper">
+          <button class="home-button">Ilusión de Müller-Lyer</button>
+          <button class="settings-button" >⚙️</button>
+      </div>
+      <div class="button-wrapper">
+          <button class="home-button">Ilusión líneas VH</button>
+          <button class="settings-button" >⚙️</button>
+      </div>
+  </div>
 </div>

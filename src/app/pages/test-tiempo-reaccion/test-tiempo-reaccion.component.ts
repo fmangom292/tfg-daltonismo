@@ -1,7 +1,18 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, HostListener } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, HostListener, inject, OnInit } from '@angular/core';
 import { BackButtonComponent } from '../../components/back-button/back-button.component';
 import { EstimuloComponent } from "../../components/estimulo/estimulo.component";
 import { CommonModule } from '@angular/common';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogRef,
+  MatDialogTitle,
+} from '@angular/material/dialog';
+import { TiempoReaccionService } from '../../services/tiempo-reaccion/tiempo-reaccion.service';
+import { Color } from '../../interfaces/color';
 
 
 @Component({
@@ -11,16 +22,32 @@ import { CommonModule } from '@angular/common';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   styleUrl: './test-tiempo-reaccion.component.scss'
 })
-export class TestTiempoReaccionComponent {
+export class TestTiempoReaccionComponent implements OnInit {
 
-  COLORES: string[] = ['grey', 'red', 'green', 'blue', 'yellow', 'pink']
+  readonly dialog = inject(MatDialog);
+  testService = inject(TiempoReaccionService);
+
+  COLORES: Color[] = this.testService.getColors();
   lastPressTime: number | null = null; // Almacena el tiempo de la última pulsación
   hiddenTime: number = 2500; // Tiempo en el que el estímulo se oculta
+  stimulusData: Object[] = [];
+  stimulusColor = this.testService.getRandomColor();
+
+  stimulusIsVisible = false;
+  
+  constructor( dialog: MatDialog) { }
+  
+  
+  ngOnInit(): void {
+  }
 
 
   @HostListener('window:keydown.space', ['$event'])
-  handleEnterEvent(event: KeyboardEvent) {
+  handleSpaceEvent(event: KeyboardEvent) {
     event.preventDefault();
+
+    if(!this.stimulusIsVisible && this.lastPressTime !== null) return;
+
     const currentTime = Date.now(); // Tiempo actual en milisegundos
     if (this.lastPressTime !== null) {
       const reactionTime = currentTime - this.lastPressTime - this.hiddenTime; // Diferencia entre pulsaciones
@@ -33,7 +60,6 @@ export class TestTiempoReaccionComponent {
     this.moveStimulus();
   }
 
-  constructor() { }
 
   stimulusStyle = {
     top: '50%', // Posición inicial
@@ -41,43 +67,39 @@ export class TestTiempoReaccionComponent {
     display: 'none' // Ocultar el estímulo al principio
   };
 
-  stimulusColor = 'black';
-
   moveStimulus() {
     const container = document.querySelector('.container') as HTMLElement;
     if (container) {
-      const containerWidth = container.offsetWidth;
-      const containerHeight = container.offsetHeight;
 
-      const stimulusSize = 50; // Tamaño del estímulo (ajusta según sea necesario)
+      // Conseguir una posición aleatoria para el estímulo dentro del contenedor desde el servicio
 
-      // Generar posiciones aleatorias dentro del contenedor, respetando los bordes
-      const randomTop = Math.random() * (containerHeight - stimulusSize);
-      const randomLeft = Math.random() * (containerWidth - stimulusSize);
+      const position = this.testService.getRandomPosition();
 
-      // Asegurarse de que las posiciones sean válidas y no excedan los límites
-      const top = Math.max(0, Math.min(randomTop, containerHeight - stimulusSize));
-      const left = Math.max(0, Math.min(randomLeft, containerWidth - stimulusSize));
+      const top = position.y;
+      const left = position.x;
+
 
       // Actualizar el estilo del estímulo
       this.stimulusStyle = {
-        top: `${top}px`,
-        left: `${left}px`,
+        top: `${top}%`,
+        left: `${left}%`,
         display: 'none'
       };
+      this.stimulusIsVisible = false;
 
-      
+      // Mostrar el estímulo después de un tiempo determinado
       setTimeout(() => {
         this.stimulusStyle = {
-          top: `${top}px`,
-          left: `${left}px`,
+          top: `${top}%`,
+          left: `${left}%`,
           display: 'block'
         };
-      }, this.hiddenTime); // Ocultar el estímulo después de 1 segundo
+        this.stimulusIsVisible = true;
+      }, this.hiddenTime); 
 
 
       // Cambiar el color del estímulo aleatoriamente
-      this.stimulusColor = this.COLORES[Math.floor(Math.random() * this.COLORES.length)];
+      this.stimulusColor = this.testService.getRandomColor();
 
       console.log('Estímulo movido a:', top, left);
     }

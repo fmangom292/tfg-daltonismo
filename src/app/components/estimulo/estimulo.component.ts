@@ -1,6 +1,7 @@
 import { CommonModule, NgStyle } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Color } from '../../interfaces/color';
 
 @Component({
   selector: 'app-estimulo',
@@ -10,5 +11,5 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
   styleUrl: './estimulo.component.scss'
 })
 export class EstimuloComponent {
-  @Input('color') color: string = 'black';
+  @Input('color') color!: Color;
 }

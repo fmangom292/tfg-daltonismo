@@ -1,0 +1,20 @@
+.container{
+    margin: 25px;
+}
+
+.form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+  
+.full-width {
+    width: 100%;
+}
+
+.button-group {
+    display: flex;
+    justify-content: flex-end; /* Alinea los botones a la derecha */
+    gap: 1rem; /* Espaciado entre los botones */
+    margin-top: 1rem; /* Espaciado superior */
+}

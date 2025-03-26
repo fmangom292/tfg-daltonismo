@@ -1,0 +1,15 @@
+<div class="container">
+    <h1>Configuración de colores</h1>
+    <form action="">
+        <form class="form">
+            <mat-form-field class="full-width" *ngFor="let color of colors">
+                <mat-label>{{color.nombre}}</mat-label>
+                <input matInput placeholder="Hex color" [value]="color.hex" (change)="editColor(color, $event)">
+            </mat-form-field>
+        </form>
+    </form>
+    <div class="button-group">
+        <button mat-button color="primary" (click)="save()">Guardar</button>
+        <button mat-button color="warn" mat-dialog-close >Cancelar</button>
+    </div>
+</div>

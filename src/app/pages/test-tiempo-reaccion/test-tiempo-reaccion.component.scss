@@ -12,10 +12,13 @@
     box-sizing: border-box; /* Asegura que el padding y el borde no afecten las dimensiones */
     border-radius: 6px;
     margin-bottom: 10px;
+    margin-top: 10px;
 }
+
 .stimulus-container {
     position: absolute; /* Permite posicionar el estímulo en cualquier lugar del contenedor */
 }
+
 .dot {
     width: 20px; /* Tamaño del punto */
     height: 20px; /* Tamaño del punto */

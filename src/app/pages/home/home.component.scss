@@ -1,25 +1,49 @@
 .home-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    text-align: center;
-  }
-  
-  .home-title {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-  }
-  
-  .button-group {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .home-button {
-    font-size: 1.5rem;
-    padding: 1rem 2rem;
-    cursor: pointer;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.home-title {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.button-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Espaciado entre el botón principal y el de configuración */
+  width: 100%; /* Asegura que los botones ocupen el mismo ancho */
+}
+
+.home-button {
+  flex-grow: 1; /* Hace que el botón principal ocupe todo el espacio disponible */
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  text-align: center;
+}
+
+.settings-button {
+  flex-shrink: 0; /* Evita que el botón de configuración cambie de tamaño */
+  width: 3rem; /* Tamaño fijo para el botón de configuración */
+  height: 3rem; /* Tamaño fijo para el botón de configuración */
+  background-color: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #555;
+}
+
+.settings-button:hover {
+  color: #000;
+}
