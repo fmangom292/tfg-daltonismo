@@ -34,6 +34,12 @@ export class TestTiempoReaccionComponent implements OnInit {
   stimulusColor = this.testService.getRandomColor();
 
   stimulusIsVisible = false;
+
+  stimulusStyle = {
+    top: '50%', // Posición inicial
+    left: '50%', // Posición inicial
+    display: 'none' // Ocultar el estímulo al principio
+  };
   
   constructor( dialog: MatDialog) { }
   
@@ -59,13 +65,6 @@ export class TestTiempoReaccionComponent implements OnInit {
     this.lastPressTime = currentTime; // Actualizar el tiempo de la última pulsación
     this.moveStimulus();
   }
-
-
-  stimulusStyle = {
-    top: '50%', // Posición inicial
-    left: '50%', // Posición inicial
-    display: 'none' // Ocultar el estímulo al principio
-  };
 
   moveStimulus() {
     const container = document.querySelector('.container') as HTMLElement;
