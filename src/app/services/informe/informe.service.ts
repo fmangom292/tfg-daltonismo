@@ -25,8 +25,16 @@ export class InformeService {
     })
   };
 
+  testTiempoReaccionData: Object[]= []
+
   constructor(private httpClient: HttpClient) { }
 
+
+  
+  /**
+   * Generates a PDF using the provided options.
+   * @returns An observable that emits the generated PDF as a Blob.
+   */
   generatePDF() {
     return this.httpClient.post(this.options.url, this.options.data, {
       headers: this.options.headers,
@@ -34,6 +42,14 @@ export class InformeService {
     });
   }
 
+  /**
+   * Sets the test data for the reaction time test.
+   * @param data The data to set.
+   */
+
+  setTestTiempoReaccionData(data: Object[]) {
+    this.testTiempoReaccionData = data;
+  }
 
 
 }

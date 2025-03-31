@@ -32,10 +32,14 @@
               }
             ],
             "styles": [
+              "node_modules/datatables.net-dt/css/dataTables.dataTables.min.css",
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/datatables.net/js/dataTables.min.js"
+            ]
           },
           "configurations": {
             "production": {

@@ -1,0 +1,29 @@
+<div class="dialog-container">
+
+    <h2 mat-dialog-title>Resultados del test</h2>
+    <mat-dialog-content >
+
+        <table datatable *ngIf="dataTest">
+            <thead>
+                <tr>
+                    <th>Nº Estímulo</th>
+                    <th>Color</th>
+                    <th>Tiempo de reacción (ms)</th>
+                    <th>Posición</th>
+                </tr>
+            </thead>
+            <tbody>
+                stimulusNumber: this.stimulusShowed, reactionTime: reactionTime, stimulusColor: this.stimulusColor.nombre, stimulusPosition: this.nextPosition.nombre
+                <tr *ngFor="let resultado of dataTest">
+                    <td>{{ resultado.stimulusNumber }}</td>
+                    <td [ngStyle]="{ 'background-color': resultado.stimulusColor }">{{resultado.stimulusColor}}</td>
+                    <td>{{ resultado.reactionTime }} ms</td>
+                    <td>{{ resultado.stimulusPosition }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-button [mat-dialog-close] [routerLink]="'/home'" cdkFocusInitial>Aceptar</button>
+    </mat-dialog-actions>
+</div>

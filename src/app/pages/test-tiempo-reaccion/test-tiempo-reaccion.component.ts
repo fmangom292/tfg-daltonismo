@@ -14,6 +14,8 @@ import {
 import { TiempoReaccionService } from '../../services/tiempo-reaccion/tiempo-reaccion.service';
 import { Color } from '../../interfaces/color';
 import { StartTestComponent } from '../../components/dialogs/start-test/start-test.component';
+import { InformeService } from '../../services/informe/informe.service';
+import { EndTestComponent } from '../../components/dialogs/end-test/end-test.component';
 
 @Component({
   selector: 'app-test-tiempo-reaccion',
@@ -22,10 +24,12 @@ import { StartTestComponent } from '../../components/dialogs/start-test/start-te
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   styleUrl: './test-tiempo-reaccion.component.scss'
 })
+
 export class TestTiempoReaccionComponent implements OnInit {
 
   readonly dialog = inject(MatDialog);
   testService = inject(TiempoReaccionService);
+  informeService = inject(InformeService);
 
   COLORES: Color[] = this.testService.getColors();
   lastPressTime: number | null = null; // Almacena el tiempo de la última pulsación
@@ -55,6 +59,7 @@ export class TestTiempoReaccionComponent implements OnInit {
     }).afterClosed().subscribe(() => {
       this.handleSpaceEvent()
     })
+    
   }
 
   @HostListener('window:keydown.escape', ['$event'])
@@ -138,6 +143,9 @@ export class TestTiempoReaccionComponent implements OnInit {
     this.testEnded = true; // Terminar la prueba
     console.log('Prueba terminada');
     console.log('Datos de la prueba:', this.stimulusData); // Mostrar los datos de la prueba en la consola
-    
+    this.informeService.setTestTiempoReaccionData(this.stimulusData); // Guardar los datos de la prueba en el servicio
+    this.dialog.open(EndTestComponent, {
+      data: {name: 'Test de Tiempo de Reacción', testData: this.stimulusData}
+    })
   }
 }

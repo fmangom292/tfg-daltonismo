@@ -17,14 +17,14 @@ export class TiempoReaccionService {
   ];
 
   positions: Position[] = [
-    { id: 1, nombre: 'x: -150', x: 30, y: 46.2 },
-    { id: 2, nombre: 'x: -300', x: 60, y: 46.2 },
-    { id: 3, nombre: 'y: -150', x: 46.2, y: 60 },
-    { id: 4, nombre: 'y: -300', x: 46.2, y: 80 },
-    { id: 5, nombre: 'y: 150', x: 46.2, y: 30 },
-    { id: 6, nombre: 'y: 300', x: 46.2, y: 10 },
-    { id: 7, nombre: 'x: 150', x: 60, y: 46.2 },
-    { id: 8, nombre: 'x: 300', x: 80, y: 46.2 }
+    { id: 1, nombre: 'x: -150', x: 30, y: 48.5 },
+    { id: 2, nombre: 'x: -300', x: 60, y: 48.5 },
+    { id: 3, nombre: 'y: -150', x: 48.5, y: 60 },
+    { id: 4, nombre: 'y: -300', x: 48.5, y: 80 },
+    { id: 5, nombre: 'y: 150', x: 48.5, y: 30 },
+    { id: 6, nombre: 'y: 300', x: 48.5, y: 10 },
+    { id: 7, nombre: 'x: 150', x: 60, y: 48.5 },
+    { id: 8, nombre: 'x: 300', x: 80, y: 48.5 }
   ];
 
   // Número de estímulos a mostrar
