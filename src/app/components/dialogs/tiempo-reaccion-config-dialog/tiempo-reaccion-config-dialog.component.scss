@@ -1,5 +1,7 @@
 .container{
     margin: 25px;
+    overflow-y: auto;
+    max-height: 400px; /* Ajusta la altura máxima según tus necesidades */
 }
 
 .form {

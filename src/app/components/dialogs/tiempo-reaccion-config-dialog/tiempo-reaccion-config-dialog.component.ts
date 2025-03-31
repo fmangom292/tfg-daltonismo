@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import { TiempoReaccionService } from '../../services/tiempo-reaccion/tiempo-reaccion.service';
-import { Color } from '../../interfaces/color';
+import { TiempoReaccionService } from '../../../services/tiempo-reaccion/tiempo-reaccion.service';
+import { Color } from '../../../interfaces/color';
 import { CommonModule } from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
 import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
@@ -21,6 +21,8 @@ export class TiempoReaccionConfigDialogComponent {
   dialogRef = inject(MatDialogRef<TiempoReaccionConfigDialogComponent>);
   testService = inject(TiempoReaccionService);
   colors: Color[];
+  stimulusNumber: number = this.testService.getStimulusNumber();
+  hiddenStimulusTime: number = this.testService.getHiddenStimulusTime();
   
   constructor() { 
     this.colors = this.testService.getColors();
@@ -33,7 +35,17 @@ export class TiempoReaccionConfigDialogComponent {
     color.hex = event.target.value;
     this.testService.editColor(color);
   }
+
+  onHiddenStimulusTimeChange(){
+    console.log(this.hiddenStimulusTime);
     
+    this.testService.setHiddenStimulusTime(this.hiddenStimulusTime);
+  }
+    
+  onStimulusNumberChange(){
+    console.log(this.stimulusNumber);
+    this.testService.setStimulusNumber(this.stimulusNumber);
+  }
   save(){
     this.dialogRef.close();
   }

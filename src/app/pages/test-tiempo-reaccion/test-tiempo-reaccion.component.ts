@@ -13,7 +13,7 @@ import {
 } from '@angular/material/dialog';
 import { TiempoReaccionService } from '../../services/tiempo-reaccion/tiempo-reaccion.service';
 import { Color } from '../../interfaces/color';
-
+import { StartTestComponent } from '../../components/dialogs/start-test/start-test.component';
 
 @Component({
   selector: 'app-test-tiempo-reaccion',
@@ -29,11 +29,16 @@ export class TestTiempoReaccionComponent implements OnInit {
 
   COLORES: Color[] = this.testService.getColors();
   lastPressTime: number | null = null; // Almacena el tiempo de la última pulsación
-  hiddenTime: number = 2500; // Tiempo en el que el estímulo se oculta
+  hiddenTime: number = this.testService.getHiddenStimulusTime(); // Tiempo en el que el estímulo se oculta
   stimulusData: Object[] = [];
   stimulusColor = this.testService.getRandomColor();
-
+  stimulusNumber: number = this.testService.getStimulusNumber(); // Número de estímulos a mostrar
   stimulusIsVisible = false;
+  testEnded = false; // Indica si la prueba ha terminado
+  nextPosition = this.testService.getRandomPosition(); // Posición aleatoria inicial del estímulo
+
+  stimulusShowed = 0; // Contador de estímulos mostrados
+
 
   stimulusStyle = {
     top: '50%', // Posición inicial
@@ -45,18 +50,34 @@ export class TestTiempoReaccionComponent implements OnInit {
   
   
   ngOnInit(): void {
+    this.dialog.open(StartTestComponent, {
+      data: {name: 'Test de Tiempo de Reacción'}
+    }).afterClosed().subscribe(() => {
+      this.handleSpaceEvent()
+    })
   }
 
+  @HostListener('window:keydown.escape', ['$event'])
+  stopTest(event: KeyboardEvent) {
+    event.preventDefault(); // Evitar el comportamiento por defecto de la tecla Escape
+    this.stimulusIsVisible = false; // Ocultar el estímulo
+    this.testEnded = true; // Terminar la prueba
+    console.log('Prueba terminada por el usuario');
+    console.log('Datos de la prueba:', this.stimulusData); // Mostrar los datos de la prueba en la consola
+  }
 
   @HostListener('window:keydown.space', ['$event'])
-  handleSpaceEvent(event: KeyboardEvent) {
-    event.preventDefault();
+  handleSpaceEvent(event?: KeyboardEvent) {
+    if (event) event.preventDefault(); // Evitar el comportamiento por defecto de la tecla espacio
+
+    if(this.testEnded) return; // Si la prueba ha terminado, no hacer nada
 
     if(!this.stimulusIsVisible && this.lastPressTime !== null) return;
 
     const currentTime = Date.now(); // Tiempo actual en milisegundos
     if (this.lastPressTime !== null) {
       const reactionTime = currentTime - this.lastPressTime - this.hiddenTime; // Diferencia entre pulsaciones
+      this.stimulusData.push({ stimulusNumber: this.stimulusShowed, reactionTime: reactionTime, stimulusColor: this.stimulusColor.nombre, stimulusPosition: this.nextPosition.nombre });
       console.log(`Tiempo de reacción: ${reactionTime} ms`);
     } else {
       console.log('Primera pulsación registrada.');
@@ -67,24 +88,30 @@ export class TestTiempoReaccionComponent implements OnInit {
   }
 
   moveStimulus() {
+
+    if(this.stimulusShowed >= this.stimulusNumber) {
+      this.endTest(); // Terminar la prueba si se han mostrado todos los estímulosz
+      return;
+    }
+
     const container = document.querySelector('.container') as HTMLElement;
     if (container) {
 
+
       // Conseguir una posición aleatoria para el estímulo dentro del contenedor desde el servicio
+      this.nextPosition = this.testService.getRandomPosition();
 
-      const position = this.testService.getRandomPosition();
-
-      const top = position.y;
-      const left = position.x;
+      const top = this.nextPosition.y;
+      const left = this.nextPosition.x;
 
 
+      this.stimulusIsVisible = false;
       // Actualizar el estilo del estímulo
       this.stimulusStyle = {
         top: `${top}%`,
         left: `${left}%`,
         display: 'none'
       };
-      this.stimulusIsVisible = false;
 
       // Mostrar el estímulo después de un tiempo determinado
       setTimeout(() => {
@@ -94,13 +121,23 @@ export class TestTiempoReaccionComponent implements OnInit {
           display: 'block'
         };
         this.stimulusIsVisible = true;
-      }, this.hiddenTime); 
+        this.stimulusShowed++; // Incrementar el contador de estímulos mostrados
+      }, this.hiddenTime);
 
 
       // Cambiar el color del estímulo aleatoriamente
       this.stimulusColor = this.testService.getRandomColor();
 
       console.log('Estímulo movido a:', top, left);
+      console.log('Estímulos mostrados:', this.stimulusShowed, 'de', this.stimulusNumber);
     }
+  }
+   
+  endTest() {
+    this.stimulusIsVisible = false; // Ocultar el estímulo
+    this.testEnded = true; // Terminar la prueba
+    console.log('Prueba terminada');
+    console.log('Datos de la prueba:', this.stimulusData); // Mostrar los datos de la prueba en la consola
+    
   }
 }

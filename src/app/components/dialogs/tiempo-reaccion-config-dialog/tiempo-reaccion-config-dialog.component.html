@@ -1,0 +1,29 @@
+<div class="container">
+    <h1>Configuración de colores</h1>
+    <form action="">
+        <form class="form">
+            <mat-form-field class="full-width" *ngFor="let color of colors">
+                <mat-label>{{color.nombre}}</mat-label>
+                <input matInput placeholder="Hex color" [value]="color.hex" (change)="editColor(color, $event)">
+            </mat-form-field>
+        </form>
+    </form>
+
+    <hr>
+
+    <h1>Configuración de tiempo de reacción</h1>
+    <form class="form">
+        <mat-form-field class="full-width">
+            <mat-label>Número de estímulos</mat-label>
+            <input matInput type="number" placeholder="Número" name="stimulusNumber" [(ngModel)]="stimulusNumber" (ngModelChange)="onStimulusNumberChange()" >
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Tiempo de ocultación de estímulos (ms)</mat-label>
+            <input matInput type="number" placeholder="Número" name="hiddenStimulusTime" [(ngModel)]="hiddenStimulusTime" (ngModelChange)="onHiddenStimulusTimeChange()" >
+        </mat-form-field>
+    </form>
+    <div class="button-group">
+        <button mat-button color="primary" (click)="save()">Guardar</button>
+        <button mat-button color="warn" mat-dialog-close >Cancelar</button>
+    </div>
+</div>

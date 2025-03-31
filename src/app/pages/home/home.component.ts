@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { RouterLink } from '@angular/router';
-import { TiempoReaccionConfigDialogComponent } from '../../components/tiempo-reaccion-config-dialog/tiempo-reaccion-config-dialog.component';
+import { TiempoReaccionConfigDialogComponent } from '../../components/dialogs/tiempo-reaccion-config-dialog/tiempo-reaccion-config-dialog.component';
 
 
 @Component({

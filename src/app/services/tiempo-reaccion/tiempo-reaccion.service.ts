@@ -17,15 +17,21 @@ export class TiempoReaccionService {
   ];
 
   positions: Position[] = [
-    { id: 1, nombre: 'Izquierda Dentro', x: 30, y: 46.2 },
-    { id: 2, nombre: 'Izquierda Fuera', x: 60, y: 46.2 },
-    { id: 3, nombre: 'Abajo Dentro', x: 46.2, y: 60 },
-    { id: 4, nombre: 'Abajo Fuera', x: 46.2, y: 80 },
-    { id: 5, nombre: 'Arriba Dentro', x: 46.2, y: 30 },
-    { id: 6, nombre: 'Arriba Fuera', x: 46.2, y: 10 },
-    { id: 7, nombre: 'Derecha Dentro', x: 60, y: 46.2 },
-    { id: 8, nombre: 'Derecha Duera', x: 80, y: 46.2 }
+    { id: 1, nombre: 'x: -150', x: 30, y: 46.2 },
+    { id: 2, nombre: 'x: -300', x: 60, y: 46.2 },
+    { id: 3, nombre: 'y: -150', x: 46.2, y: 60 },
+    { id: 4, nombre: 'y: -300', x: 46.2, y: 80 },
+    { id: 5, nombre: 'y: 150', x: 46.2, y: 30 },
+    { id: 6, nombre: 'y: 300', x: 46.2, y: 10 },
+    { id: 7, nombre: 'x: 150', x: 60, y: 46.2 },
+    { id: 8, nombre: 'x: 300', x: 80, y: 46.2 }
   ];
+
+  // Número de estímulos a mostrar
+  private stimulusNumber: number = 50;
+
+  // Tiempo en el que el estímulo se oculta
+  private hiddenStimulusTime: number = 2500;
 
   constructor() { }
 
@@ -56,8 +62,8 @@ export class TiempoReaccionService {
     this.colors[index] = color;
     console.log('Color edited', color);
     console.log('Colors', this.colors);
-    
-    
+
+
   }
 
   addColor(color: Color) {
@@ -94,5 +100,22 @@ export class TiempoReaccionService {
     const index = this.positions.findIndex(p => p.id === position.id);
     this.positions[index] = position;
   }
+
+  // Stimulus methods
+  getStimulusNumber() {
+    return this.stimulusNumber;
+  }
   
+  setStimulusNumber(number: number) {
+    this.stimulusNumber = number;
+  }
+
+  getHiddenStimulusTime() {
+    return this.hiddenStimulusTime;
+  }
+  
+  setHiddenStimulusTime(time: number) {
+    this.hiddenStimulusTime = time;
+  }
+
 }
