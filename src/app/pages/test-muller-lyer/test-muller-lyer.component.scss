@@ -1,0 +1,70 @@
+.muller-lyer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 40vh;
+}
+
+.line {
+  display: flex;
+  align-items: center;
+}
+
+.line-body {
+  height: 2px;
+  background-color: black;
+}
+
+.arrow {
+  display: inline-block;
+  position: relative;
+  width: 0px; /* Tamaño de la flecha */
+  height: 20px;
+}
+
+.arrow.open-left::before,
+.arrow.open-left::after {
+  content: '';
+  position: absolute;
+  width: 15px; /* Longitud de las líneas diagonales */
+  height: 2px; /* Grosor de las líneas diagonales */
+  background-color: black;
+}
+
+.arrow.open-left::before {
+  transform: rotate(45deg);
+  top: 50%;
+  left: 0;
+  transform-origin: left center;
+}
+
+.arrow.open-left::after {
+  transform: rotate(-45deg);
+  top: 50%;
+  left: 0;
+  transform-origin: left center;
+}
+
+.arrow.open-right::before,
+.arrow.open-right::after {
+  content: '';
+  position: absolute;
+  width: 15px; /* Longitud de las líneas diagonales */
+  height: 2px; /* Grosor de las líneas diagonales */
+  background-color: black;
+}
+
+.arrow.open-right::before {
+  transform: rotate(-45deg);
+  top: 50%;
+  right: 0;
+  transform-origin: right center;
+}
+
+.arrow.open-right::after {
+  transform: rotate(45deg);
+  top: 50%;
+  right: 0;
+  transform-origin: right center;
+}

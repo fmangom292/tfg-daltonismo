@@ -32,7 +32,13 @@ export class EndTestComponent {
 
   dtOptions: Config = {
     dom: 'Blfrtip', // Activa los botones
-    buttons: ['excel' ], // Configuración de botones
+    buttons: [
+      {
+        extend: 'excel',
+        text: 'Exportar a Excel',
+        title: `Resultados_Test_${new Date().toLocaleDateString()}`,
+      }
+     ], // Configuración de botones
   };
 
   constructor(private router: Router) { 
