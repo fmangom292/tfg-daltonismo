@@ -40,7 +40,7 @@ export class TestTiempoReaccionComponent implements OnInit {
   stimulusIsVisible = false;
   testEnded = false; // Indica si la prueba ha terminado
   nextPosition = this.testService.getRandomPosition(); // Posición aleatoria inicial del estímulo
-
+  dialogUp = false; // Indica si el diálogo de inicio se ha mostrado
   stimulusShowed = 0; // Contador de estímulos mostrados
 
 
@@ -54,13 +54,15 @@ export class TestTiempoReaccionComponent implements OnInit {
   
   
   ngOnInit(): void {
+    this.dialogUp = true; // Indica que el diálogo de inicio se ha mostrado
     this.dialog.open(StartTestComponent, {
       data: {name: 'Test de Tiempo de Reacción'}
     }).afterClosed().subscribe(() => {
+      this.dialogUp = false; // Indica que el diálogo de inicio se ha cerrado
       this.handleSpaceEvent()
     })
     
-  }
+  }          
 
   @HostListener('window:keydown.escape', ['$event'])
   stopTest(event: KeyboardEvent) {
@@ -73,8 +75,10 @@ export class TestTiempoReaccionComponent implements OnInit {
 
   @HostListener('window:keydown.space', ['$event'])
   handleSpaceEvent(event?: KeyboardEvent) {
+    console.log('Pulsación de tecla registrada');
+    
     if (event) event.preventDefault(); // Evitar el comportamiento por defecto de la tecla espacio
-
+    if(this.dialogUp) return; // Si el diálogo de inicio está abierto, no hacer nada
     if(this.testEnded) return; // Si la prueba ha terminado, no hacer nada
 
     if(!this.stimulusIsVisible && this.lastPressTime !== null) return;
@@ -145,7 +149,8 @@ export class TestTiempoReaccionComponent implements OnInit {
     console.log('Datos de la prueba:', this.stimulusData); // Mostrar los datos de la prueba en la consola
     this.informeService.setTestTiempoReaccionData(this.stimulusData); // Guardar los datos de la prueba en el servicio
     this.dialog.open(EndTestComponent, {
-      data: {name: 'Test de Tiempo de Reacción', testData: this.stimulusData}
+      data: {name: 'Test de Tiempo de Reacción', testData: this.stimulusData},
+      width: '1000px',
     })
   }
 }

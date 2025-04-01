@@ -13,6 +13,10 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterLink } from '@angular/router';
 import {DataTablesModule} from 'angular-datatables';
+import { Config } from 'datatables.net';
+import 'datatables.net-buttons';
+import 'datatables.net-buttons/js/buttons.html5';
+import 'datatables.net-buttons/js/buttons.print';
 
 @Component({
   selector: 'app-end-test',
@@ -25,6 +29,11 @@ export class EndTestComponent {
   readonly data = inject<any>(MAT_DIALOG_DATA);
 
   dataTest: any[] = this.data.testData; // Datos del test
+
+  dtOptions: Config = {
+    dom: 'Blfrtip', // Activa los botones
+    buttons: ['excel' ], // Configuración de botones
+  };
 
   constructor(private router: Router) { 
     console.log(this.data);
