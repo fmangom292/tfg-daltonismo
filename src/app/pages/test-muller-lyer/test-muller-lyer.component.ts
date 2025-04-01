@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { BackButtonComponent } from "../../components/back-button/back-button.component";
 
 @Component({
   selector: 'app-test-muller-lyer',
-  imports: [],
+  imports: [BackButtonComponent],
   templateUrl: './test-muller-lyer.component.html',
   styleUrl: './test-muller-lyer.component.scss'
 })
@@ -15,7 +16,7 @@ export class TestMullerLyerComponent implements OnInit {
   maxLineLength: number = 12; // Longitud máxima de las líneas
   
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    
   }
   
   setLineLength(length: number): void {
