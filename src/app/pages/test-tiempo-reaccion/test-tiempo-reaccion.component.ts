@@ -151,7 +151,7 @@ export class TestTiempoReaccionComponent implements OnInit {
     //console.log('Datos de la prueba:', this.stimulusData); // Mostrar los datos de la prueba en la consola
     this.informeService.setTestTiempoReaccionData(this.stimulusData); // Guardar los datos de la prueba en el servicio
     this.dialog.open(EndTestComponent, {
-      data: {name: 'Test de Tiempo de Reacción', testData: this.stimulusData},
+      data: {name: 'Test de Tiempo de Reacción', testData: this.stimulusData, testId: 1},
       width: '1000px',
     })
   }

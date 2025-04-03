@@ -1,6 +1,6 @@
 <div class="container">
 
-  <div class="muller-lyer-container" [ngClass]="{ 'hidden': hideArrows }">
+  <div class="muller-lyer-container" *ngIf="!testEnd && !hideArrows">
     <!-- Línea 1 -->
     <div class="line" (click)="test(1)" [style]="{color: line1Color}">
       <span class="arrow open-left"></span>
@@ -14,10 +14,5 @@
       <div class="line-body" [style.width.cm]="line2Length"></div>
       <span class="arrow open-left"></span>
     </div>
-  </div>
-
-  <!-- Botón de regreso -->
-  <div class="button-group">
-    <app-back-button/>
   </div>
 </div>

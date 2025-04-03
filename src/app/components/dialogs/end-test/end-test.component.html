@@ -1,9 +1,6 @@
-<div class="dialog-container">
-
     <h2 mat-dialog-title>Resultados del test</h2>
-    <mat-dialog-content >
-
-        <table datatable [dtOptions]="dtOptions" *ngIf="dataTest">
+    <mat-dialog-content width="500px" class="mat-typography">
+        <table datatable [dtOptions]="dtOptions" *ngIf="testData && testId == 1">
             <thead>
                 <tr>
                     <th>Nº Estímulo</th>
@@ -14,7 +11,7 @@
             </thead>
             <tbody>
                 stimulusNumber: this.stimulusShowed, reactionTime: reactionTime, stimulusColor: this.stimulusColor.nombre, stimulusPosition: this.nextPosition.nombre
-                <tr *ngFor="let resultado of dataTest">
+                <tr *ngFor="let resultado of testData">
                     <td>{{ resultado.stimulusNumber }}</td>
                     <td [ngStyle]="{ 'background-color': resultado.stimulusColor }">{{resultado.stimulusColor}}</td>
                     <td>{{ resultado.reactionTime }} ms</td>
@@ -22,8 +19,31 @@
                 </tr>
             </tbody>
         </table>
+        <table datatable [dtOptions]="dtOptions" *ngIf="testData && testId == 2">
+            <thead>
+                <tr>
+                    <th>Nº Estímulo</th>
+                    <th>Color</th>
+                    <th>Logitud Línea Superior</th>
+                    <th>Logitud Línea Inferior</th>
+                    <th>Línea pulsada</th>
+                    <th>¿Es correcto?</th>
+                </tr>
+            </thead>
+            <tbody>
+                stimulusNumber: this.stimulusShowed, reactionTime: reactionTime, stimulusColor: this.stimulusColor.nombre, stimulusPosition: this.nextPosition.nombre
+                <tr *ngFor="let resultado of testData">
+                    <td>{{ resultado.stimulusNumber }}</td>
+                    <td>{{ resultado.lineColor }}</td>
+                    <td>{{ resultado.line1Length }} cm</td>
+                    <td>{{ resultado.line2Length }} cm</td>
+                    <td>{{ resultado.clickedLine }} </td>
+                    <td>{{ resultado.correctAnswer ? 'Correcto' : 'Falso' }}</td>
+                </tr>
+            </tbody>
+        </table>
+
     </mat-dialog-content>
     <mat-dialog-actions>
         <button mat-button [mat-dialog-close] [routerLink]="'/home'" cdkFocusInitial>Aceptar</button>
     </mat-dialog-actions>
-</div>

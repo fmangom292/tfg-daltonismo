@@ -25,7 +25,8 @@ export class InformeService {
     })
   };
 
-  testTiempoReaccionData: Object[]= []
+  testTiempoReaccionData: any[]= []
+  testMullerLyerData: any[]= []
 
   constructor(private httpClient: HttpClient) { }
 
@@ -47,7 +48,18 @@ export class InformeService {
    * @param data The data to set.
    */
 
-  setTestTiempoReaccionData(data: Object[]) {
+  setTestTiempoReaccionData(data: any[]) {
     this.testTiempoReaccionData = data;
   }
+
+  /**
+   * Sets the test data for the Müller-Lyer test.
+   * @param data The data to set.
+   */
+  setTestMullerLyerData(data: any[]) {
+    this.testMullerLyerData = data;
+  }
+
+  
+
 }

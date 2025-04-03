@@ -4,6 +4,7 @@ import {
   MatDialog,
   MatDialogActions,
   MatDialogClose,
+  MatDialogContainer,
   MatDialogContent,
   MatDialogModule,
   MatDialogRef,
@@ -20,7 +21,7 @@ import 'datatables.net-buttons/js/buttons.print';
 
 @Component({
   selector: 'app-end-test',
-  imports: [MatDialogContent, MatDialogActions, MatDialogClose, RouterLink, MatButtonModule, CommonModule, MatDialogModule, DataTablesModule],
+  imports: [MatDialogContent, MatDialogActions, MatDialogClose, RouterLink, MatButtonModule, CommonModule, MatDialogModule, DataTablesModule, MatDialogContainer],
   templateUrl: './end-test.component.html',
   styleUrl: './end-test.component.scss'
 })
@@ -28,10 +29,17 @@ export class EndTestComponent {
   readonly dialogRef = inject(MatDialogRef<EndTestComponent>);
   readonly data = inject<any>(MAT_DIALOG_DATA);
 
-  dataTest: any[] = this.data.testData; // Datos del test
+  testId: number = this.data.testId; // ID del test
+  testTitle: string = this.data.testTitle; // Titulo del test
+  testColums: string[] = this.data.testColumns; // Columnas del test
+  testData: any[] = this.data.testData; // Datos del test
+
 
   dtOptions: Config = {
-    dom: 'Blfrtip', // Activa los botones
+    dom: 'Blfrtip', // Activa los botones,
+    language: {
+      url: 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json', // Idioma español
+    },
     buttons: [
       {
         extend: 'excel',
