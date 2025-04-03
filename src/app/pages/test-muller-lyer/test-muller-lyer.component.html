@@ -1,15 +1,15 @@
-<div class="muller-lyer-container">
-  <div class="line">
-    <span class="arrow open-left"></span>
-    <div class="line-body" [style.width.cm]="line1Length"></div>
-    <span class="arrow open-right"></span>
+<div class="muller-lyer-container" [ngClass]="{ 'hidden': hideArrows }">
+  <div class="line" (click)="test(1)">
+    <span class="arrow open-left" [style.background-color]="line1Color"></span>
+    <div class="line-body" [style.width.cm]="line1Length" [style.background-color]="line1Color"></div>
+    <span class="arrow open-right" [style.background-color]="line1Color"></span>
   </div>
-  <div class="line">
-    <span class="arrow open-right"></span>
-    <div class="line-body" [style.width.cm]="line2Length"></div>
-    <span class="arrow open-left"></span>
+  <div class="line" (click)="test(2)">
+    <span class="arrow open-right" [style.border-color]="line2Color"></span>
+    <div class="line-body" [style.width.cm]="line2Length" [style.background-color]="line2Color"></div>
+    <span class="arrow open-left" [style.border-color]="line2Color"></span>
   </div>
 </div>
-<div>
-  <app-back-button></app-back-button>
-</div>
+  <div [style]="{ 'width': '200px' }">
+    <app-back-button></app-back-button>
+  </div>

@@ -19,7 +19,7 @@ import { EndTestComponent } from '../../components/dialogs/end-test/end-test.com
 
 @Component({
   selector: 'app-test-tiempo-reaccion',
-  imports: [BackButtonComponent, EstimuloComponent, CommonModule],
+  imports: [EstimuloComponent, CommonModule],
   templateUrl: './test-tiempo-reaccion.component.html',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   styleUrl: './test-tiempo-reaccion.component.scss'
