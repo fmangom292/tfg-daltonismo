@@ -37,7 +37,7 @@
                     <td>{{ resultado.lineColor }}</td>
                     <td>{{ resultado.line1Length }} cm</td>
                     <td>{{ resultado.line2Length }} cm</td>
-                    <td>{{ resultado.clickedLine }} </td>
+                    <td>{{ resultado.clickedLine == 1 ? 'Superior' : 'Inferior' }} </td>
                     <td>{{ resultado.correctAnswer ? 'Correcto' : 'Falso' }}</td>
                 </tr>
             </tbody>
