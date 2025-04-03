@@ -8,6 +8,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { ColorService } from '../../../services/color/color.service';
+import { MullerLyerService } from '../../../services/muller-lyer/muller-lyer.service';
 
 
 
@@ -22,11 +23,17 @@ export class TiempoReaccionConfigDialogComponent {
   dialogRef = inject(MatDialogRef<TiempoReaccionConfigDialogComponent>);
   testService = inject(TiempoReaccionService);
   colorService = inject(ColorService);
+  ilusionService = inject(MullerLyerService);
 
   colors: Color[];
+  
+  
   stimulusNumber: number = this.testService.getStimulusNumber();
   hiddenStimulusTime: number = this.testService.getHiddenStimulusTime();
   
+  stimulusMLNumber: number = this.ilusionService.getStimulusNumber(); // Número de estímulos para la ilusión de Müller-Lyer
+  hiddenMLStimulusTime: number = this.ilusionService.getHideLinesTime(); // Tiempo de ocultación de estímulos para la ilusión de Müller-Lyer
+
   constructor() { 
     this.colors = this.colorService.getColors();
   }
@@ -48,6 +55,22 @@ export class TiempoReaccionConfigDialogComponent {
     console.log(this.stimulusNumber);
     this.testService.setStimulusNumber(this.stimulusNumber);
   }
+
+    /**
+   * Actualiza el número de estímulos para la ilusión de Müller-Lyer.
+   */
+    onStimulusMLNumberChange(): void {
+      console.log(`Número de estímulos de Müller-Lyer actualizado a: ${this.stimulusMLNumber}`);
+      this.ilusionService.setStimulusNumber(this.stimulusMLNumber);
+    }
+  
+    /**
+     * Actualiza el tiempo de ocultación de estímulos para la ilusión de Müller-Lyer.
+     */
+    onHiddenMLStimulusTimeChange(): void {
+      console.log(`Tiempo de ocultación de estímulos de Müller-Lyer actualizado a: ${this.hiddenMLStimulusTime} ms`);
+      this.ilusionService.setHideLinesTime(this.hiddenMLStimulusTime);
+    }
 
 
   

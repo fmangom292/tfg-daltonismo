@@ -39,6 +39,12 @@ export class MullerLyerService {
    */
   private maxLineLength: number = 12;
 
+
+  /**
+   * Tiempo en milisegundos para ocultar las líneas.
+   * @private
+   */
+  private hideLinesTime: number = 500; 
   constructor() {}
 
   // Getters y Setters para las propiedades de la clase
@@ -47,7 +53,7 @@ export class MullerLyerService {
    * Obtiene la longitud de la línea 1.
    * @returns {number} Longitud de la línea 1.
    */
-  get getLine1Length(): number {
+  getLine1Length(): number {
     return this.line1Length;
   }
 
@@ -55,7 +61,7 @@ export class MullerLyerService {
    * Establece la longitud de la línea 1.
    * @param {number} length - Nueva longitud de la línea 1.
    */
-  set setLine1Length(length: number) {
+  setLine1Length(length: number) {
     this.line1Length = length;
   }
 
@@ -63,7 +69,7 @@ export class MullerLyerService {
    * Obtiene la longitud de la línea 2.
    * @returns {number} Longitud de la línea 2.
    */
-  get getLine2Length(): number {
+  getLine2Length(): number {
     return this.line2Length;
   }
 
@@ -71,7 +77,7 @@ export class MullerLyerService {
    * Establece la longitud de la línea 2.
    * @param {number} length - Nueva longitud de la línea 2.
    */
-  set setLine2Length(length: number) {
+  setLine2Length(length: number) {
     this.line2Length = length;
   }
 
@@ -79,7 +85,7 @@ export class MullerLyerService {
    * Obtiene el número total de estímulos.
    * @returns {number} Número de estímulos.
    */
-  get getStimulusNumber(): number {
+  getStimulusNumber(): number {
     return this.stimulusNumber;
   }
 
@@ -87,7 +93,7 @@ export class MullerLyerService {
    * Establece el número total de estímulos.
    * @param {number} number - Nuevo número de estímulos.
    */
-  set setStimulusNumber(number: number) {
+  setStimulusNumber(number: number) {
     this.stimulusNumber = number;
   }
 
@@ -95,7 +101,7 @@ export class MullerLyerService {
    * Obtiene la longitud mínima permitida para las líneas.
    * @returns {number} Longitud mínima de las líneas.
    */
-  get getMinLineLength(): number {
+  getMinLineLength(): number {
     return this.minLineLength;
   }
 
@@ -103,7 +109,7 @@ export class MullerLyerService {
    * Establece la longitud mínima permitida para las líneas.
    * @param {number} length - Nueva longitud mínima de las líneas.
    */
-  set setMinLineLength(length: number) {
+  setMinLineLength(length: number) {
     this.minLineLength = length;
   }
 
@@ -111,7 +117,7 @@ export class MullerLyerService {
    * Obtiene la longitud máxima permitida para las líneas.
    * @returns {number} Longitud máxima de las líneas.
    */
-  get getMaxLineLength(): number {
+  getMaxLineLength(): number {
     return this.maxLineLength;
   }
 
@@ -119,7 +125,24 @@ export class MullerLyerService {
    * Establece la longitud máxima permitida para las líneas.
    * @param {number} length - Nueva longitud máxima de las líneas.
    */
-  set setMaxLineLength(length: number) {
+  setMaxLineLength(length: number) {
     this.maxLineLength = length;
+  }
+
+  /**
+   * Obtiene el tiempo en milisegundos para ocultar las líneas.
+   * @returns {number} Tiempo de ocultación de las líneas.
+   */
+  getHideLinesTime(): number {
+    return this.hideLinesTime;
+  }
+
+  /**
+   * Establece el tiempo en milisegundos para ocultar las líneas.
+   * @param {number} time - Nuevo tiempo de ocultación de las líneas.
+   */
+  setHideLinesTime(time: number) {
+    this.hideLinesTime = time;
+    console.log(`Tiempo de ocultación de líneas actualizado a: ${this.hideLinesTime} ms`);
   }
 }

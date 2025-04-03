@@ -21,8 +21,8 @@ export class TestMullerLyerComponent implements OnInit {
   readonly configService = inject(MullerLyerService);
   readonly informeService = inject(InformeService);
 
-  line1Length: number = this.configService.getLine1Length; // Longitud inicial de la línea 1 en píxeles
-  line2Length: number = this.configService.getLine2Length; // Longitud inicial de la línea 2 en píxeles
+  line1Length: number = this.configService.getLine1Length(); // Longitud inicial de la línea 1 en píxeles
+  line2Length: number = this.configService.getLine2Length(); // Longitud inicial de la línea 2 en píxeles
   line1Color: string = '#000000'; // Color inicial de las línea 1 y flechas
   line2Color: string = '#000000'; // Color inicial de las línea 2 y flechas
 
@@ -30,9 +30,9 @@ export class TestMullerLyerComponent implements OnInit {
   maxLineLength: number = 12; // Longitud máxima de las líneas
 
   hideArrows: boolean = false; // Indica si se deben ocultar las flechas
-  hideLinesTime: number = 500; // Tiempo en milisegundos para ocultar las flechas
+  hideLinesTime: number = this.configService.getHideLinesTime(); // Tiempo en milisegundos para ocultar las flechas
   
-  stimulusNumber: number = 10; // Número de estímulos
+  stimulusNumber: number = this.configService.getStimulusNumber(); // Número de estímulos
   stimulusDone: number = 1; // Número de estímulos realizados
   
   testResults: any[] = []; // Array para almacenar los resultados del test
@@ -72,7 +72,7 @@ export class TestMullerLyerComponent implements OnInit {
   }
 
   startTest(): void {
-    this.hideLines(3000); // Oculta las flechas al iniciar el test
+    this.hideLines(this.hideLinesTime); // Oculta las flechas al iniciar el test
     this.line1Length = this.getRandomLineLength();
     this.setLineColor(1, this.colorService.getRandomColor().hex); // Cambia el color de la línea 1
     this.hideArrows = false; // Asegúrate de que las flechas estén visibles al iniciar el test
@@ -105,7 +105,7 @@ export class TestMullerLyerComponent implements OnInit {
     if (this.isTestEnded()) this.endTest(); // Termina el test si se ha llegado al final
   }
 
-  hideLines(time: number = 500) {
+  hideLines(time: number): void {
     this.hideArrows = true; // Oculta las flechas
     setTimeout(() => {
       this.hideArrows = false; // Oculta las flechas después de 2 segundos
@@ -114,6 +114,8 @@ export class TestMullerLyerComponent implements OnInit {
   }
 
   changeLine1Width() {
+    console.log('Tiempo ocultas',this.hideLinesTime);
+    
     this.hideLines(this.hideLinesTime); // Oculta las flechas después de un tiempo determinado
     this.line1Length = this.getRandomLineLength();
     this.line1Color = this.colorService.getRandomColor().hex; // Cambia el color de la línea 1

@@ -88,7 +88,7 @@ export class TestTiempoReaccionComponent implements OnInit {
     const currentTime = Date.now(); // Tiempo actual en milisegundos
     if (this.lastPressTime !== null) {
       const reactionTime = currentTime - this.lastPressTime - this.hiddenTime; // Diferencia entre pulsaciones
-      this.stimulusData.push({ stimulusNumber: this.stimulusShowed, reactionTime: reactionTime, stimulusColor: this.stimulusColor.nombre, stimulusPosition: this.nextPosition.nombre });
+      this.stimulusData.push({ stimulusNumber: this.stimulusShowed, reactionTime: reactionTime, stimulusColor: this.stimulusColor.hex, stimulusPosition: this.nextPosition.nombre });
       //console.log(`Tiempo de reacción: ${reactionTime} ms`);
     } else {
       //console.log('Primera pulsación registrada.');
