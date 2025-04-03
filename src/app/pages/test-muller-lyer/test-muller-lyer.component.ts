@@ -11,7 +11,7 @@ import { EndTestComponent } from '../../components/dialogs/end-test/end-test.com
 
 @Component({
   selector: 'app-test-muller-lyer',
-  imports: [BackButtonComponent, CommonModule],
+  imports: [CommonModule],
   templateUrl: './test-muller-lyer.component.html',
   styleUrl: './test-muller-lyer.component.scss'
 })

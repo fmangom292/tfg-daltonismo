@@ -21,7 +21,7 @@ import 'datatables.net-buttons/js/buttons.print';
 
 @Component({
   selector: 'app-end-test',
-  imports: [MatDialogContent, MatDialogActions, MatDialogClose, RouterLink, MatButtonModule, CommonModule, MatDialogModule, DataTablesModule, MatDialogContainer],
+  imports: [MatDialogContent, MatDialogActions, MatDialogClose, RouterLink, MatButtonModule, CommonModule, MatDialogModule, DataTablesModule],
   templateUrl: './end-test.component.html',
   styleUrl: './end-test.component.scss'
 })
