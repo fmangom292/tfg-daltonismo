@@ -50,6 +50,4 @@ export class InformeService {
   setTestTiempoReaccionData(data: Object[]) {
     this.testTiempoReaccionData = data;
   }
-
-
 }

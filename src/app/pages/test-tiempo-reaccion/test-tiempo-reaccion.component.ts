@@ -16,6 +16,7 @@ import { Color } from '../../interfaces/color';
 import { StartTestComponent } from '../../components/dialogs/start-test/start-test.component';
 import { InformeService } from '../../services/informe/informe.service';
 import { EndTestComponent } from '../../components/dialogs/end-test/end-test.component';
+import { ColorService } from '../../services/color/color.service';
 
 @Component({
   selector: 'app-test-tiempo-reaccion',
@@ -29,13 +30,14 @@ export class TestTiempoReaccionComponent implements OnInit {
 
   readonly dialog = inject(MatDialog);
   testService = inject(TiempoReaccionService);
+  colorService = inject(ColorService);
   informeService = inject(InformeService);
 
-  COLORES: Color[] = this.testService.getColors();
+  COLORES: Color[] = this.colorService.getColors();
   lastPressTime: number | null = null; // Almacena el tiempo de la última pulsación
   hiddenTime: number = this.testService.getHiddenStimulusTime(); // Tiempo en el que el estímulo se oculta
   stimulusData: Object[] = [];
-  stimulusColor = this.testService.getRandomColor();
+  stimulusColor = this.colorService.getRandomColor();
   stimulusNumber: number = this.testService.getStimulusNumber(); // Número de estímulos a mostrar
   stimulusIsVisible = false;
   testEnded = false; // Indica si la prueba ha terminado
@@ -69,13 +71,13 @@ export class TestTiempoReaccionComponent implements OnInit {
     event.preventDefault(); // Evitar el comportamiento por defecto de la tecla Escape
     this.stimulusIsVisible = false; // Ocultar el estímulo
     this.testEnded = true; // Terminar la prueba
-    console.log('Prueba terminada por el usuario');
-    console.log('Datos de la prueba:', this.stimulusData); // Mostrar los datos de la prueba en la consola
+    //console.log('Prueba terminada por el usuario');
+    //console.log('Datos de la prueba:', this.stimulusData); // Mostrar los datos de la prueba en la consola
   }
 
   @HostListener('window:keydown.space', ['$event'])
   handleSpaceEvent(event?: KeyboardEvent) {
-    console.log('Pulsación de tecla registrada');
+    //console.log('Pulsación de tecla registrada');
     
     if (event) event.preventDefault(); // Evitar el comportamiento por defecto de la tecla espacio
     if(this.dialogUp) return; // Si el diálogo de inicio está abierto, no hacer nada
@@ -87,9 +89,9 @@ export class TestTiempoReaccionComponent implements OnInit {
     if (this.lastPressTime !== null) {
       const reactionTime = currentTime - this.lastPressTime - this.hiddenTime; // Diferencia entre pulsaciones
       this.stimulusData.push({ stimulusNumber: this.stimulusShowed, reactionTime: reactionTime, stimulusColor: this.stimulusColor.nombre, stimulusPosition: this.nextPosition.nombre });
-      console.log(`Tiempo de reacción: ${reactionTime} ms`);
+      //console.log(`Tiempo de reacción: ${reactionTime} ms`);
     } else {
-      console.log('Primera pulsación registrada.');
+      //console.log('Primera pulsación registrada.');
     }
 
     this.lastPressTime = currentTime; // Actualizar el tiempo de la última pulsación
@@ -135,18 +137,18 @@ export class TestTiempoReaccionComponent implements OnInit {
 
 
       // Cambiar el color del estímulo aleatoriamente
-      this.stimulusColor = this.testService.getRandomColor();
+      this.stimulusColor = this.colorService.getRandomColor();
 
-      console.log('Estímulo movido a:', top, left);
-      console.log('Estímulos mostrados:', this.stimulusShowed, 'de', this.stimulusNumber);
+      //console.log('Estímulo movido a:', top, left);
+      //console.log('Estímulos mostrados:', this.stimulusShowed, 'de', this.stimulusNumber);
     }
   }
    
   endTest() {
     this.stimulusIsVisible = false; // Ocultar el estímulo
     this.testEnded = true; // Terminar la prueba
-    console.log('Prueba terminada');
-    console.log('Datos de la prueba:', this.stimulusData); // Mostrar los datos de la prueba en la consola
+    //console.log('Prueba terminada');
+    //console.log('Datos de la prueba:', this.stimulusData); // Mostrar los datos de la prueba en la consola
     this.informeService.setTestTiempoReaccionData(this.stimulusData); // Guardar los datos de la prueba en el servicio
     this.dialog.open(EndTestComponent, {
       data: {name: 'Test de Tiempo de Reacción', testData: this.stimulusData},

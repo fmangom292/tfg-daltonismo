@@ -3,15 +3,16 @@
   <div class="button-group">
       <div class="button-wrapper">
           <button class="home-button" [routerLink]="'/test-tiempo-reaccion'">Estudio de tiempo de reacción visual</button>
-          <button class="settings-button" (click)="openTiempoReaccionConfigDialog()">⚙️</button>
       </div>
       <div class="button-wrapper">
           <button class="home-button" [routerLink]="'/muller-lyer'">Ilusión de Müller-Lyer</button>
-          <button class="settings-button" >⚙️</button>
       </div>
       <div class="button-wrapper">
           <button class="home-button">Ilusión líneas VH</button>
-          <button class="settings-button" >⚙️</button>
       </div>
+      <div class="button-wrapper">
+        <button class="home-button" (click)="openTiempoReaccionConfigDialog()">Configuración ⚙️</button>
+        <button class="home-button">Ver Informe</button>
+    </div>
   </div>
 </div>

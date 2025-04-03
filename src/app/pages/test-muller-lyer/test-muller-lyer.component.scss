@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
-  margin-top: 40vh;
+  gap: 2rem; /* Espaciado entre las líneas */
+  margin-bottom: 20px; /* Espaciado entre las líneas y el grupo de botones */
 }
 
 .line {
@@ -14,15 +14,14 @@
 
 .line-body {
   height: 2px;
-  background-color: black;
+  background-color: currentColor; /* Usa el color dinámico */
 }
 
 .arrow {
   display: inline-block;
   position: relative;
-  width: 0px; /* Tamaño de la flecha */
+  width: 20px; /* Tamaño del contenedor de la flecha */
   height: 20px;
-  background-color: violet;
 }
 
 .arrow.open-left::before,
@@ -31,7 +30,7 @@
   position: absolute;
   width: 15px; /* Longitud de las líneas diagonales */
   height: 2px; /* Grosor de las líneas diagonales */
-  background-color: black;
+  background-color: currentColor; /* Usa el color dinámico */
 }
 
 .arrow.open-left::before {
@@ -54,7 +53,7 @@
   position: absolute;
   width: 15px; /* Longitud de las líneas diagonales */
   height: 2px; /* Grosor de las líneas diagonales */
-  background-color: black;
+  background-color: currentColor; /* Usa el color dinámico */
 }
 
 .arrow.open-right::before {
@@ -71,6 +70,24 @@
   transform-origin: right center;
 }
 
+.open-right, .open-left {
+  width: 0px;
+}
+
 .hidden {
   display: none;
+}
+
+.container {
+  display: flex;
+  flex-direction: column; /* Asegura que los elementos estén en columna */
+  justify-content: center; /* Centra verticalmente */
+  align-items: center; /* Centra horizontalmente */
+  height: 100vh; /* Ocupa toda la altura de la pantalla */
+}
+
+.button-group {
+  display: flex;
+  justify-content: center; /* Centra los botones horizontalmente */
+  margin-top: 20px; /* Espaciado entre las líneas y el botón */
 }

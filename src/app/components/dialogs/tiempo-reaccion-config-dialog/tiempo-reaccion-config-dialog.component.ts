@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
 import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
+import { ColorService } from '../../../services/color/color.service';
 
 
 
@@ -20,12 +21,14 @@ export class TiempoReaccionConfigDialogComponent {
   
   dialogRef = inject(MatDialogRef<TiempoReaccionConfigDialogComponent>);
   testService = inject(TiempoReaccionService);
+  colorService = inject(ColorService);
+
   colors: Color[];
   stimulusNumber: number = this.testService.getStimulusNumber();
   hiddenStimulusTime: number = this.testService.getHiddenStimulusTime();
   
   constructor() { 
-    this.colors = this.testService.getColors();
+    this.colors = this.colorService.getColors();
   }
 
   ngOnInit(): void {
@@ -33,12 +36,11 @@ export class TiempoReaccionConfigDialogComponent {
 
   editColor(color: Color, event: any){
     color.hex = event.target.value;
-    this.testService.editColor(color);
+    this.colorService.editColor(color);
   }
 
   onHiddenStimulusTimeChange(){
     console.log(this.hiddenStimulusTime);
-    
     this.testService.setHiddenStimulusTime(this.hiddenStimulusTime);
   }
     
@@ -46,6 +48,9 @@ export class TiempoReaccionConfigDialogComponent {
     console.log(this.stimulusNumber);
     this.testService.setStimulusNumber(this.stimulusNumber);
   }
+
+
+  
   save(){
     this.dialogRef.close();
   }

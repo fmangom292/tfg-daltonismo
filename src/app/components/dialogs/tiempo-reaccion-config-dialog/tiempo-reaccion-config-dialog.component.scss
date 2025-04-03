@@ -1,7 +1,6 @@
 .container{
     margin: 25px;
     overflow-y: auto;
-    max-height: 400px; /* Ajusta la altura máxima según tus necesidades */
 }
 
 .form {
@@ -17,6 +16,4 @@
 .button-group {
     display: flex;
     justify-content: flex-end; /* Alinea los botones a la derecha */
-    gap: 1rem; /* Espaciado entre los botones */
-    margin-top: 1rem; /* Espaciado superior */
 }
