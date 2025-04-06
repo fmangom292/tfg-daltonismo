@@ -2,17 +2,21 @@
 
   <div class="muller-lyer-container" *ngIf="!testEnd && !hideArrows">
     <!-- Línea 1 -->
-    <div class="line" (click)="test(1)" [style]="{color: line1Color}">
-      <span class="arrow open-left"></span>
-      <div class="line-body" [style.width.cm]="line1Length"></div>
-      <span class="arrow open-right"></span>
+    <div class="line-wrapper" (click)="test(1)">
+      <div class="line" [style]="{color: line1Color}">
+        <span class="arrow open-left"></span>
+        <div class="line-body" [style.width.cm]="line1Length"></div>
+        <span class="arrow open-right"></span>
+      </div>
     </div>
   
     <!-- Línea 2 -->
-    <div class="line" (click)="test(2)">
-      <span class="arrow open-right"></span>
-      <div class="line-body" [style.width.cm]="line2Length"></div>
-      <span class="arrow open-left"></span>
+    <div class="line-wrapper" (click)="test(2)">
+      <div class="line">
+        <span class="arrow open-right"></span>
+        <div class="line-body" [style.width.cm]="line2Length"></div>
+        <span class="arrow open-left"></span>
+      </div>
     </div>
   </div>
 </div>

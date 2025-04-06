@@ -1,18 +1,21 @@
 <div class="container" [style]="{backgroundColor: backgroundColor.hex}" [style.display]="hideStimulus ? 'none' : 'flex'">
-    <div class="stimulus">
-      <!-- Línea vertical -->
+  <div class="stimulus">
+    <!-- Línea vertical -->
+    <div class="line-wrapper" (click)="test(1)">
       <div
         class="line-vertical"
         [style.height.mm]="verticalLineLength"
         [style.margin-bottom.mm]="lineSpacing"
-        [style.backgroundColor]="verticalLineColor.hex"
-        (click)="test(1)">
+        [style.backgroundColor]="verticalLineColor.hex">
       </div>
-  
-      <!-- Línea horizontal -->
-      <div class="line-horizontal"
-      [style.width.mm]="horizontalLineLength"
-       (click)="test(2)">
+    </div>
+
+    <!-- Línea horizontal -->
+    <div class="line-wrapper" (click)="test(2)">
+      <div
+        class="line-horizontal"
+        [style.width.mm]="horizontalLineLength">
       </div>
     </div>
   </div>
+</div>

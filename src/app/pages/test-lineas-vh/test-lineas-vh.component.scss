@@ -37,3 +37,11 @@
   label {
     font-size: 14px;
   }
+
+  .line-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px; /* Aumenta el área clickeable alrededor de la línea */
+    cursor: pointer; /* Cambia el cursor al pasar sobre la zona clickeable */
+  }

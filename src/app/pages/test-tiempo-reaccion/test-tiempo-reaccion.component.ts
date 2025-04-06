@@ -44,7 +44,10 @@ export class TestTiempoReaccionComponent implements OnInit {
   nextPosition = this.testService.getRandomPosition(); // Posición aleatoria inicial del estímulo
   dialogUp = false; // Indica si el diálogo de inicio se ha mostrado
   stimulusShowed = 0; // Contador de estímulos mostrados
-  
+
+  timeToClick: number = 3000; // Tiempo para hacer clic después de que el estímulo se muestre
+  timeoutRef: any; // ID del timeout para el clic
+
   backgroundColor = this.colorService.getBackgroundColor(); // Color de fondo del contenedor
 
 
@@ -54,20 +57,20 @@ export class TestTiempoReaccionComponent implements OnInit {
     left: '50%', // Posición inicial
     display: 'none' // Ocultar el estímulo al principio
   };
-  
-  constructor( dialog: MatDialog) { }
-  
-  
+
+  constructor(dialog: MatDialog) { }
+
+
   ngOnInit(): void {
     this.dialogUp = true; // Indica que el diálogo de inicio se ha mostrado
     this.dialog.open(StartTestComponent, {
-      data: {name: 'Test de Tiempo de Reacción'}
+      data: { name: 'Test de Tiempo de Reacción' }
     }).afterClosed().subscribe(() => {
       this.dialogUp = false; // Indica que el diálogo de inicio se ha cerrado
       this.handleSpaceEvent()
     })
-    
-  }          
+
+  }
 
   @HostListener('window:keydown.escape', ['$event'])
   stopTest(event: KeyboardEvent) {
@@ -80,13 +83,14 @@ export class TestTiempoReaccionComponent implements OnInit {
 
   @HostListener('window:keydown.space', ['$event'])
   handleSpaceEvent(event?: KeyboardEvent) {
+    clearTimeout(this.timeoutRef); // Limpiar el timeout anterior
     //console.log('Pulsación de tecla registrada');
-    
-    if (event) event.preventDefault(); // Evitar el comportamiento por defecto de la tecla espacio
-    if(this.dialogUp) return; // Si el diálogo de inicio está abierto, no hacer nada
-    if(this.testEnded) return; // Si la prueba ha terminado, no hacer nada
 
-    if(!this.stimulusIsVisible && this.lastPressTime !== null) return;
+    if (event) event.preventDefault(); // Evitar el comportamiento por defecto de la tecla espacio
+    if (this.dialogUp) return; // Si el diálogo de inicio está abierto, no hacer nada
+    if (this.testEnded) return; // Si la prueba ha terminado, no hacer nada
+
+    if (!this.stimulusIsVisible && this.lastPressTime !== null) return;
 
     const currentTime = Date.now(); // Tiempo actual en milisegundos
     if (this.lastPressTime !== null) {
@@ -103,14 +107,13 @@ export class TestTiempoReaccionComponent implements OnInit {
 
   moveStimulus() {
 
-    if(this.stimulusShowed >= this.stimulusNumber) {
+    if (this.stimulusShowed >= this.stimulusNumber) {
       this.endTest(); // Terminar la prueba si se han mostrado todos los estímulosz
       return;
     }
 
     const container = document.querySelector('.container') as HTMLElement;
     if (container) {
-
 
       // Conseguir una posición aleatoria para el estímulo dentro del contenedor desde el servicio
       this.nextPosition = this.testService.getRandomPosition();
@@ -136,6 +139,13 @@ export class TestTiempoReaccionComponent implements OnInit {
         };
         this.stimulusIsVisible = true;
         this.stimulusShowed++; // Incrementar el contador de estímulos mostrados
+        clearTimeout(this.timeoutRef); // Limpiar el timeout anterior
+        this.timeoutRef = setTimeout(() => {
+          this.lastPressTime = Date.now(); // Actualizar el tiempo de la última pulsación
+          this.stimulusData.push({ stimulusNumber: this.stimulusShowed, reactionTime: -1, stimulusColor: this.stimulusColor.hex, stimulusPosition: this.nextPosition.nombre });
+          this.moveStimulus(); // Mover el estímulo después de un tiempo determinado
+        }, this.timeToClick); // Tiempo para hacer clic después de que el estímulo se muestre
+          
       }, this.hiddenTime);
 
 
@@ -146,7 +156,9 @@ export class TestTiempoReaccionComponent implements OnInit {
       //console.log('Estímulos mostrados:', this.stimulusShowed, 'de', this.stimulusNumber);
     }
   }
-   
+
+
+
   endTest() {
     this.stimulusIsVisible = false; // Ocultar el estímulo
     this.testEnded = true; // Terminar la prueba
@@ -154,8 +166,18 @@ export class TestTiempoReaccionComponent implements OnInit {
     //console.log('Datos de la prueba:', this.stimulusData); // Mostrar los datos de la prueba en la consola
     this.informeService.setTestTiempoReaccionData(this.stimulusData); // Guardar los datos de la prueba en el servicio
     this.dialog.open(EndTestComponent, {
-      data: {name: 'Test de Tiempo de Reacción', testData: this.stimulusData, testId: 1},
+      data: { name: 'Test de Tiempo de Reacción', testData: this.stimulusData, testId: 1 },
       width: '1000px',
     })
+  }
+
+
+  startTest() {
+    this.stimulusIsVisible = false; // Ocultar el estímulo
+    this.testEnded = false; // Terminar la prueba
+    this.stimulusData = []; // Reiniciar los datos de la prueba
+    this.stimulusShowed = 0; // Reiniciar el contador de estímulos mostrados
+    this.lastPressTime = null; // Reiniciar el tiempo de la última pulsación
+    this.moveStimulus(); // Iniciar el movimiento del estímulo
   }
 }

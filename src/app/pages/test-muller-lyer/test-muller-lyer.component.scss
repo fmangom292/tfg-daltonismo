@@ -91,3 +91,17 @@
   justify-content: center; /* Centra los botones horizontalmente */
   margin-top: 20px; /* Espaciado entre las líneas y el botón */
 }
+
+.line-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px; /* Aumenta el área clickeable alrededor de la línea */
+  cursor: pointer; /* Asegura que el cursor cambie al pasar sobre la zona clickeable */
+}
+
+
+.line {
+  display: flex;
+  align-items: center;
+}
