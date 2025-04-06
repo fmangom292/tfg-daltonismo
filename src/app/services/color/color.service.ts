@@ -15,6 +15,8 @@ export class ColorService {
     { id: 6, nombre: 'Rosa', hex: '#FFC0CB' }
   ];
 
+  private backgroundColor: Color = { id: 7, nombre: 'Fondo', hex: '#FFFFFF' };
+
   constructor() { }
 
   // Color methods
@@ -57,6 +59,16 @@ export class ColorService {
   setColors(colors: Color[]) {
     this.colors = colors;
   }
+
+  getBackgroundColor() {
+    return this.backgroundColor;
+  }
+
+  setBackgroundColor(color: Color) {
+    this.backgroundColor = color;
+  }
+
+
 
 
 }

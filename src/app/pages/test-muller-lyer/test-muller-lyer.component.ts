@@ -25,6 +25,7 @@ export class TestMullerLyerComponent implements OnInit {
   line2Length: number = this.configService.getLine2Length(); // Longitud inicial de la línea 2 en píxeles
   line1Color: string = '#000000'; // Color inicial de las línea 1 y flechas
   line2Color: string = '#000000'; // Color inicial de las línea 2 y flechas
+  backgroundColor: string = this.colorService.getBackgroundColor().hex;
 
   minLineLength: number = 8; // Longitud mínima de las líneas
   maxLineLength: number = 12; // Longitud máxima de las líneas

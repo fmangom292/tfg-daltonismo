@@ -44,6 +44,9 @@ export class TestTiempoReaccionComponent implements OnInit {
   nextPosition = this.testService.getRandomPosition(); // Posición aleatoria inicial del estímulo
   dialogUp = false; // Indica si el diálogo de inicio se ha mostrado
   stimulusShowed = 0; // Contador de estímulos mostrados
+  
+  backgroundColor = this.colorService.getBackgroundColor(); // Color de fondo del contenedor
+
 
 
   stimulusStyle = {

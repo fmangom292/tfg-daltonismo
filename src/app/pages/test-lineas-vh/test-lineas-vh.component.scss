@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .stimulus {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .line-vertical {
+    width: 4px; /* Aumenta el grosor de la línea vertical */
+    background-color: black;
+  }
+  
+  .line-horizontal {
+    width: 150px; /* Aumenta el ancho de la línea horizontal */
+    height: 4px; /* Aumenta el grosor de la línea horizontal */
+    background-color: black;
+  }
+
+  .line-horizontal, .line-vertical {
+    cursor: pointer;
+  }
+  
+  .controls {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  label {
+    font-size: 14px;
+  }

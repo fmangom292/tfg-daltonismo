@@ -6,6 +6,11 @@
                 <mat-label>{{color.nombre}}</mat-label>
                 <input matInput placeholder="Hex color" [value]="color.hex" (change)="editColor(color, $event)">
             </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Color del fondo de los test</mat-label>
+                <input matInput type="text" placeholder="Color del fondo" name="backgroundColor"
+                    [(ngModel)]="backgroundColor.hex" (ngModelChange)="onBackgroundColorChange()">
+            </mat-form-field>
         </form>
     </form>
 
@@ -23,6 +28,7 @@
             <input matInput type="number" placeholder="Número" name="hiddenStimulusTime"
                 [(ngModel)]="hiddenStimulusTime" (ngModelChange)="onHiddenStimulusTimeChange()">
         </mat-form-field>
+
     </form>
 
     <hr>
@@ -39,6 +45,22 @@
             <input matInput type="number" placeholder="Número" name="hiddenMLStimulusTime"
                 [(ngModel)]="hiddenMLStimulusTime" (ngModelChange)="onHiddenMLStimulusTimeChange()">
         </mat-form-field>
+    </form>
+
+    <hr>
+
+    <h1>Configuración de Ilusión de Líneas VH</h1>
+    <form class="form">
+      <mat-form-field class="full-width">
+        <mat-label>Número de estímulos</mat-label>
+        <input matInput type="number" placeholder="Número" name="stimulusVHNumber" [(ngModel)]="stimulusVHNumber"
+          (ngModelChange)="onStimulusVHNumberChange()">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Tiempo de ocultación de estímulos (ms)</mat-label>
+        <input matInput type="number" placeholder="Número" name="hiddenVHStimulusTime" [(ngModel)]="hiddenVHStimulusTime"
+          (ngModelChange)="onHiddenVHStimulusTimeChange()">
+      </mat-form-field>
     </form>
 </div>
 <mat-dialog-actions>

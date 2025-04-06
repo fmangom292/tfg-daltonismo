@@ -27,6 +27,8 @@ export class InformeService {
 
   testTiempoReaccionData: any[]= []
   testMullerLyerData: any[]= []
+  testLineasVHData: any[]= []
+
 
   constructor(private httpClient: HttpClient) { }
 
@@ -58,6 +60,14 @@ export class InformeService {
    */
   setTestMullerLyerData(data: any[]) {
     this.testMullerLyerData = data;
+  }
+
+  /**
+   * Sets the test data for the vertical-horizontal lines test.
+   * @param data The data to set.
+   */
+  setTestLineasVHData(data: any[]) {
+    this.testLineasVHData = data;
   }
 
   
