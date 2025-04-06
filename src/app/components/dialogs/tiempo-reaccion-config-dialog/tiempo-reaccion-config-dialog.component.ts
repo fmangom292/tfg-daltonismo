@@ -32,6 +32,7 @@ export class TiempoReaccionConfigDialogComponent {
 
   stimulusNumber: number = this.testService.getStimulusNumber();
   hiddenStimulusTime: number = this.testService.getHiddenStimulusTime();
+  timeToClick: number = this.testService.getTimeToClick(); // Tiempo para hacer clic después de que el estímulo se muestre
 
   stimulusMLNumber: number = this.ilusionService.getStimulusNumber(); // Número de estímulos para la ilusión de Müller-Lyer
   hiddenMLStimulusTime: number = this.ilusionService.getHideLinesTime(); // Tiempo de ocultación de estímulos para la ilusión de Müller-Lyer
@@ -59,6 +60,11 @@ export class TiempoReaccionConfigDialogComponent {
   onStimulusNumberChange() {
     //console.log(this.stimulusNumber);
     this.testService.setStimulusNumber(this.stimulusNumber);
+  }
+
+  onTimeToClickChange() {
+    //console.log(this.stimulusNumber);
+    this.testService.setTimeToClick(this.timeToClick);
   }
 
   onBackgroundColorChange() {

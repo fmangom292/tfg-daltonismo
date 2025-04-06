@@ -45,7 +45,7 @@ export class TestTiempoReaccionComponent implements OnInit {
   dialogUp = false; // Indica si el diálogo de inicio se ha mostrado
   stimulusShowed = 0; // Contador de estímulos mostrados
 
-  timeToClick: number = 3000; // Tiempo para hacer clic después de que el estímulo se muestre
+  timeToClick: number = this.testService.getTimeToClick(); // Tiempo para hacer clic después de que el estímulo se muestre
   timeoutRef: any; // ID del timeout para el clic
 
   backgroundColor = this.colorService.getBackgroundColor(); // Color de fondo del contenedor

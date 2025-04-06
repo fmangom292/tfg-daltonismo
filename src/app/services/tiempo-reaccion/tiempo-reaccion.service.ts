@@ -21,6 +21,7 @@ export class TiempoReaccionService {
  
   private stimulusNumber: number = 50;  // Número de estímulos a mostrar
   private hiddenStimulusTime: number = 2500; // Tiempo en el que el estímulo se oculta
+  private timeToClick: number = 3000; // Tiempo para hacer clic después de que el estímulo se muestre
 
   constructor() { }
 
@@ -62,6 +63,14 @@ export class TiempoReaccionService {
   
   setHiddenStimulusTime(time: number) {
     this.hiddenStimulusTime = time;
+  }
+
+  getTimeToClick() {
+    return this.timeToClick;
+  }
+
+  setTimeToClick(time: number) {
+    this.timeToClick = time;
   }
 
 }

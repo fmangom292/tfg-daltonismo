@@ -28,6 +28,11 @@
             <input matInput type="number" placeholder="Número" name="hiddenStimulusTime"
                 [(ngModel)]="hiddenStimulusTime" (ngModelChange)="onHiddenStimulusTimeChange()">
         </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Tiempo límite para hacer click (ms)</mat-label>
+            <input matInput type="number" placeholder="Número" name="timeToClick"
+                [(ngModel)]="timeToClick" (ngModelChange)="onTimeToClickChange()">
+        </mat-form-field>
 
     </form>
 
