@@ -120,7 +120,7 @@ export class TestMullerLyerComponent implements OnInit {
     this.hideLines(this.hideLinesTime); // Oculta las flechas después de un tiempo determinado
     this.line1Length = this.getRandomLineLength();
     this.line1Color = this.colorService.getRandomColor().hex; // Cambia el color de la línea 1
-    if (this.line1Length === this.line2Length) {
+    while (this.line1Length === this.line2Length) {
       this.line1Length = this.getRandomLineLength(); // Asegúrate de que las longitudes no sean iguales
     }
   }
