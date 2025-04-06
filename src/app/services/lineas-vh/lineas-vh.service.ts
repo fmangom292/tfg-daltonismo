@@ -7,7 +7,7 @@ export class LineasVhService {
 
   private verticalLineLength: number = 80; // Longitud inicial de la línea vertical en mm
   private horizontalLineLength: number = 100; // Longitud inicial de la línea horizontal en mm
-  private stimulusNumber: number = 5; // Número de estímulos
+  private stimulusNumber: number = 20; // Número de estímulos
   private hideTime: number = 500; // Tiempo de ocultación en milisegundos
 
   constructor() { }
