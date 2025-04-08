@@ -20,7 +20,6 @@ export class InformeComponent {
   testId: number = this.data.testId; // ID del test
   testTitle: string = this.data.testTitle; // Titulo del test
   testColums: string[] = this.data.testColumns; // Columnas del test
-  testData: any[] = this.data.testData; // Datos del test
 
 
   dtOptions: Config = {

@@ -1,9 +1,12 @@
 
 
-<h2 mat-dialog-title>Resultados del test</h2>
+<h2 mat-dialog-title>Resultados de los tests</h2>
 <mat-dialog-content width="500px" class="mat-typography">
-    <div *ngIf="data.tiempoReaccionData" class="table-container">
-        <table datatable [dtOptions]="dtOptions" *ngIf="testData">
+    <div *ngIf="data.tiempoReaccionData.length > 0" class="table-container">
+        <h3>
+            Resultados del test de tiempo de reacción visual
+        </h3>
+        <table datatable [dtOptions]="dtOptions" *ngIf="data.tiempoReaccionData">
             <thead>
                 <tr>
                     <th>Nº Estímulo</th>
@@ -14,7 +17,7 @@
             </thead>
             <tbody>
                 stimulusNumber: this.stimulusShowed, reactionTime: reactionTime, stimulusColor: this.stimulusColor.nombre, stimulusPosition: this.nextPosition.nombre
-                <tr *ngFor="let resultado of testData">
+                <tr *ngFor="let resultado of data.tiempoReaccionData">
                     <td>{{ resultado.stimulusNumber }}</td>
                     <td>{{ resultado.stimulusColor.hex }}</td>
                     <td>{{ resultado.reactionTime > 0 ? `${resultado.reactionTime} ms` : 'No pulsado'}}</td>
@@ -23,8 +26,11 @@
             </tbody>
         </table>
     </div>
-    <div *ngIf="data.lineasVHData" class="table-container">
-        <table datatable [dtOptions]="dtOptions" *ngIf="testData && testId == 2">
+    <div *ngIf="data.mullerLyerData.length > 0" class="table-container">
+        <h3>
+            Resultados de la ilusión de líneas VH
+        </h3>
+        <table datatable [dtOptions]="dtOptions" *ngIf="data.mullerLyerData">
             <thead>
                 <tr>
                     <th>Nº Estímulo</th>
@@ -37,7 +43,7 @@
             </thead>
             <tbody>
                 stimulusNumber: this.stimulusShowed, reactionTime: reactionTime, stimulusColor: this.stimulusColor.nombre, stimulusPosition: this.nextPosition.nombre
-                <tr *ngFor="let resultado of testData">
+                <tr *ngFor="let resultado of data.mullerLyerData">
                     <td>{{ resultado.stimulusNumber }}</td>
                     <td>{{ resultado.lineColor }}</td>
                     <td>{{ resultado.line1Length }} cm</td>
@@ -48,8 +54,11 @@
             </tbody>
         </table>
     </div>
-    <div *ngIf="data.mullerLyerData" class="table-container">
-        <table datatable [dtOptions]="dtOptions" *ngIf="testData && testId == 3">
+    <div *ngIf="data.lineasVHData.length > 0" class="table-container">
+        <h3>
+            Resultados de la ilusión de Müller-Lyer
+        </h3>
+        <table datatable [dtOptions]="dtOptions" *ngIf="data.lineasVHData">
             <thead>
                 <tr>
                     <th>Nº Estímulo</th>
@@ -62,7 +71,7 @@
             </thead>
             <tbody>
                 stimulusNumber: this.stimulusShowed, reactionTime: reactionTime, stimulusColor: this.stimulusColor.nombre, stimulusPosition: this.nextPosition.nombre
-                <tr *ngFor="let resultado of testData">
+                <tr *ngFor="let resultado of data.lineasVHData">
                     <td>{{ resultado.stimulusNumber }}</td>
                     <td>{{ resultado.verticalLineColor.hex }}</td>
                     <td>{{ resultado.verticalLineLength }} cm</td>

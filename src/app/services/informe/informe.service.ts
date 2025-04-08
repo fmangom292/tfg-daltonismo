@@ -70,6 +70,20 @@ export class InformeService {
     this.testLineasVHData = data;
   }
 
+  // Getters
+
+  getTestTiempoReaccionData(): any[] {
+    return this.testTiempoReaccionData;
+  }
+
+  getTestMullerLyerData(): any[] {
+    return this.testMullerLyerData;
+  }
+
+  getTestLineasVHData(): any[] {
+    return this.testLineasVHData;
+  }
+
   
 
 }
