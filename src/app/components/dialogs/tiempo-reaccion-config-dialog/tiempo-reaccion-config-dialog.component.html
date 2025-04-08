@@ -17,7 +17,7 @@
     <hr>
 
     <h1>Configuración de test de tiempo de reacción</h1>
-    <h4>Tiempo aproximado de prueba {{(combinationNumbers * hiddenStimulusTime) / 1000 /60 }} minutos</h4>
+    <h4>Tiempo aproximado de prueba {{((combinationNumbers * hiddenStimulusTime) / 1000 /60) | number }} minutos</h4>
     <form class="form">
         <!-- 
         <mat-form-field class="full-width">
@@ -69,7 +69,7 @@
     <hr>
 
     <h1>Configuración de Ilusión de Líneas VH</h1>
-    <h4>Tiempo aproximado de prueba {{((stimulusVHNumber * hiddenVHStimulusTime) / 1000 /60 ) }} minutos</h4>
+    <h4>Tiempo aproximado de prueba {{((stimulusVHNumber * hiddenVHStimulusTime + 60000) / 1000 /60 )  | number }} Minutos</h4>
     <form class="form">
       <mat-form-field class="full-width">
         <mat-label>Número de estímulos</mat-label>

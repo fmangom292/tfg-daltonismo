@@ -11,6 +11,7 @@ import { ColorService } from '../../../services/color/color.service';
 import { MullerLyerService } from '../../../services/muller-lyer/muller-lyer.service';
 import { LineasVhService } from '../../../services/lineas-vh/lineas-vh.service';
 import {MatSelectModule} from '@angular/material/select';
+import { TimePipe } from '../../../pipes/time.pipe';
 
 
 
@@ -113,6 +114,23 @@ export class TiempoReaccionConfigDialogComponent {
     this.vhService.setHideTime(this.hiddenVHStimulusTime);
   }
 
+/**
+ * Convierte un tiempo en milisegundos a minutos o segundos.
+ * @param durationMs - Duración en milisegundos.
+ * @returns {string} Tiempo formateado en minutos o segundos.
+ */
+formatTime(durationMs: number): string {
+  console.log(`Duración en milisegundos: ${durationMs}`);
+  
+  const seconds = durationMs / 1000;
+  let output = '';
+  if (seconds < 60) {
+    seconds.toFixed(2) + " segundos";
+  } else {
+    output = (seconds / 60).toFixed(2) + " minutos";
+  }
+  return output;
+}
 
   save() {
     this.dialogRef.close();
