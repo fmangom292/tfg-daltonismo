@@ -1,0 +1,80 @@
+
+
+<h2 mat-dialog-title>Resultados del test</h2>
+<mat-dialog-content width="500px" class="mat-typography">
+    <div *ngIf="data.tiempoReaccionData" class="table-container">
+        <table datatable [dtOptions]="dtOptions" *ngIf="testData">
+            <thead>
+                <tr>
+                    <th>Nº Estímulo</th>
+                    <th>Color</th>
+                    <th>Tiempo de reacción (ms)</th>
+                    <th>Posición</th>
+                </tr>
+            </thead>
+            <tbody>
+                stimulusNumber: this.stimulusShowed, reactionTime: reactionTime, stimulusColor: this.stimulusColor.nombre, stimulusPosition: this.nextPosition.nombre
+                <tr *ngFor="let resultado of testData">
+                    <td>{{ resultado.stimulusNumber }}</td>
+                    <td>{{ resultado.stimulusColor.hex }}</td>
+                    <td>{{ resultado.reactionTime > 0 ? `${resultado.reactionTime} ms` : 'No pulsado'}}</td>
+                    <td>{{ resultado.stimulusPosition.nombre }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="data.lineasVHData" class="table-container">
+        <table datatable [dtOptions]="dtOptions" *ngIf="testData && testId == 2">
+            <thead>
+                <tr>
+                    <th>Nº Estímulo</th>
+                    <th>Color</th>
+                    <th>Logitud Línea Superior</th>
+                    <th>Logitud Línea Inferior</th>
+                    <th>Línea pulsada</th>
+                    <th>¿Es correcto?</th>
+                </tr>
+            </thead>
+            <tbody>
+                stimulusNumber: this.stimulusShowed, reactionTime: reactionTime, stimulusColor: this.stimulusColor.nombre, stimulusPosition: this.nextPosition.nombre
+                <tr *ngFor="let resultado of testData">
+                    <td>{{ resultado.stimulusNumber }}</td>
+                    <td>{{ resultado.lineColor }}</td>
+                    <td>{{ resultado.line1Length }} cm</td>
+                    <td>{{ resultado.line2Length }} cm</td>
+                    <td>{{ resultado.clickedLine == 1 ? 'Superior' : 'Inferior' }} </td>
+                    <td>{{ resultado.correctAnswer ? 'Correcto' : 'Falso' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="data.mullerLyerData" class="table-container">
+        <table datatable [dtOptions]="dtOptions" *ngIf="testData && testId == 3">
+            <thead>
+                <tr>
+                    <th>Nº Estímulo</th>
+                    <th>Color</th>
+                    <th>Logitud Línea Vertical</th>
+                    <th>Espaciado entre líneas</th>
+                    <th>Línea pulsada</th>
+                    <th>¿Es correcto?</th>
+                </tr>
+            </thead>
+            <tbody>
+                stimulusNumber: this.stimulusShowed, reactionTime: reactionTime, stimulusColor: this.stimulusColor.nombre, stimulusPosition: this.nextPosition.nombre
+                <tr *ngFor="let resultado of testData">
+                    <td>{{ resultado.stimulusNumber }}</td>
+                    <td>{{ resultado.verticalLineColor.hex }}</td>
+                    <td>{{ resultado.verticalLineLength }} cm</td>
+                    <td>{{ resultado.lineSpacing }} cm</td>
+                    <td>{{ resultado.clickedLine == 1 ? 'Vertical' : 'Horizontal' }} </td>
+                    <td>{{ resultado.correctAnswer ? 'Correcto' : 'Falso' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button [mat-dialog-close] [routerLink]="'/home'" cdkFocusInitial>Aceptar</button>
+</mat-dialog-actions>

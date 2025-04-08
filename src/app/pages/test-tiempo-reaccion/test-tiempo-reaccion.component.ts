@@ -57,6 +57,7 @@ export class TestTiempoReaccionComponent implements OnInit, OnDestroy {
 
   combinations: { color: Color; position: Position }[] = [];
   currentCombinationIndex: number = 0; // Índice de la combinación actual
+  combinationNumbers: number = this.testService.getCombinationNumbers() / 48; // Número de combinaciones de colores y posiciones
 
   stimulusStyle = {
     top: '50%', // Posición inicial
@@ -102,7 +103,7 @@ export class TestTiempoReaccionComponent implements OnInit, OnDestroy {
     this.testData = []; // Reiniciar los datos de la prueba
 
     // Generar combinaciones de colores y posiciones
-    this.generateCombinations(2); // Número de repeticiones
+    this.generateCombinations(this.combinationNumbers); // Número de repeticiones
 
     this.showStimulus(); // Mostrar el estímulo por primera vez
   }
@@ -153,9 +154,10 @@ export class TestTiempoReaccionComponent implements OnInit, OnDestroy {
    * Selecciona la siguiente combinación de la lista y la aplica al estímulo.
    */
   setStimulusStyles() {
-    if (this.currentCombinationIndex >= this.combinations.length) {
+    if (this.currentCombinationIndex >= this.combinations.length -1) {
       this.testEnded = true; // Terminar la prueba si se han usado todas las combinaciones
       this.endTest();
+      this.showEndTestDialog(); // Mostrar el diálogo de finalización de la prueba
       return;
     }
   
