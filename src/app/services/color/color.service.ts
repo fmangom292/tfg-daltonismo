@@ -12,10 +12,10 @@ export class ColorService {
     { id: 3, nombre: 'Verde', hex: '#00FF00' },
     { id: 4, nombre: 'Azul', hex: '#0000FF' },
     { id: 5, nombre: 'Amarillo', hex: '#FFFF00' },
-    { id: 6, nombre: 'Rosa', hex: '#FFC0CB' }
+    { id: 6, nombre: 'Rosa', hex: '#FF00FF' }
   ];
 
-  private backgroundColor: Color = { id: 7, nombre: 'Fondo', hex: '#FFFFFF' };
+  private backgroundColor: Color = { id: 7, nombre: 'Fondo', hex: '#595959' };
 
   constructor() { }
 

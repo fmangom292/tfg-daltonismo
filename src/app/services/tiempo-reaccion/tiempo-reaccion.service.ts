@@ -22,6 +22,8 @@ export class TiempoReaccionService {
   private stimulusNumber: number = 50;  // Número de estímulos a mostrar
   private hiddenStimulusTime: number = 2500; // Tiempo en el que el estímulo se oculta
   private timeToClick: number = 3000; // Tiempo para hacer clic después de que el estímulo se muestre
+  private combinationOptions: number[] = [48, 96, 144, 192, 240, 288]; // Opciones disponibles
+  private combinationNumbers: number = 48; // Número de combinaciones de colores y posiciones
 
   constructor() { }
 
@@ -48,7 +50,6 @@ export class TiempoReaccionService {
     this.positions[index] = position;
   }
 
-  // Stimulus methods
   getStimulusNumber() {
     return this.stimulusNumber;
   }
@@ -71,6 +72,18 @@ export class TiempoReaccionService {
 
   setTimeToClick(time: number) {
     this.timeToClick = time;
+  }
+
+  getCombinationNumbers() {
+    return this.combinationNumbers;
+  }
+
+  setCombinationNumbers(number: number) {
+    this.combinationNumbers = number;
+  }
+
+  getCombinationOptions() {
+    return this.combinationOptions;
   }
 
 }

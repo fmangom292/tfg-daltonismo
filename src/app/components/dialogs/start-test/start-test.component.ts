@@ -26,4 +26,8 @@ export class StartTestComponent {
   onNoClick(): void {
     this.dialogRef.close();
   }
+
+  startTest(): void {
+    this.dialogRef.close(true);
+  }
 }

@@ -17,12 +17,25 @@
     <hr>
 
     <h1>Configuración de test de tiempo de reacción</h1>
+    <h4>Tiempo aproximado de prueba {{(combinationNumbers * hiddenStimulusTime) / 1000 /60 }} minutos</h4>
     <form class="form">
+        <!-- 
         <mat-form-field class="full-width">
             <mat-label>Número de estímulos</mat-label>
             <input matInput type="number" placeholder="Número" name="stimulusNumber" [(ngModel)]="stimulusNumber"
                 (ngModelChange)="onStimulusNumberChange()">
         </mat-form-field>
+        -->
+        <mat-form-field class="full-width">
+            <mat-label>Combinaciones color-posición 
+                </mat-label>
+            <mat-select [(ngModel)]="combinationNumbers" name="combinationNumbers" (ngModelChange)="onCombinationNumbersChange()">
+              <mat-option *ngFor="let number of combinationOptions" [value]="number">
+                {{ number }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
         <mat-form-field class="full-width">
             <mat-label>Tiempo de ocultación de estímulos (ms)</mat-label>
             <input matInput type="number" placeholder="Número" name="hiddenStimulusTime"
@@ -39,6 +52,7 @@
     <hr>
 
     <h1>Configuración de Ilusión de Müller-Lyer</h1>
+    <h4>Tiempo aproximado de prueba {{((stimulusMLNumber * hiddenMLStimulusTime) / 1000 /60 ) | number}} minutos</h4>
     <form class="form">
         <mat-form-field class="full-width">
             <mat-label>Número de estímulos</mat-label>
@@ -55,6 +69,7 @@
     <hr>
 
     <h1>Configuración de Ilusión de Líneas VH</h1>
+    <h4>Tiempo aproximado de prueba {{((stimulusVHNumber * hiddenVHStimulusTime) / 1000 /60 ) }} minutos</h4>
     <form class="form">
       <mat-form-field class="full-width">
         <mat-label>Número de estímulos</mat-label>

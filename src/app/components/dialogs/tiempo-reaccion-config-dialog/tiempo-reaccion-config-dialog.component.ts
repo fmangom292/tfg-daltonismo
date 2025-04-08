@@ -10,12 +10,14 @@ import { FormsModule } from '@angular/forms';
 import { ColorService } from '../../../services/color/color.service';
 import { MullerLyerService } from '../../../services/muller-lyer/muller-lyer.service';
 import { LineasVhService } from '../../../services/lineas-vh/lineas-vh.service';
+import {MatSelectModule} from '@angular/material/select';
+
 
 
 
 @Component({
   selector: 'app-tiempo-reaccion-config-dialog',
-  imports: [MatFormFieldModule, MatInputModule, CommonModule, MatButtonModule, MatDialogModule, FormsModule],
+  imports: [MatFormFieldModule, MatInputModule, CommonModule, MatButtonModule, MatDialogModule, FormsModule, MatSelectModule],
   templateUrl: './tiempo-reaccion-config-dialog.component.html',
   styleUrl: './tiempo-reaccion-config-dialog.component.scss'
 })
@@ -33,6 +35,9 @@ export class TiempoReaccionConfigDialogComponent {
   stimulusNumber: number = this.testService.getStimulusNumber();
   hiddenStimulusTime: number = this.testService.getHiddenStimulusTime();
   timeToClick: number = this.testService.getTimeToClick(); // Tiempo para hacer clic después de que el estímulo se muestre
+  combinationNumbers: number = this.testService.getCombinationNumbers(); // Número de combinaciones de colores y posiciones
+  combinationOptions: number[] = this.testService.getCombinationOptions(); // Opciones disponibles para el número de combinaciones
+
 
   stimulusMLNumber: number = this.ilusionService.getStimulusNumber(); // Número de estímulos para la ilusión de Müller-Lyer
   hiddenMLStimulusTime: number = this.ilusionService.getHideLinesTime(); // Tiempo de ocultación de estímulos para la ilusión de Müller-Lyer
@@ -69,6 +74,11 @@ export class TiempoReaccionConfigDialogComponent {
 
   onBackgroundColorChange() {
     this.colorService.setBackgroundColor(this.backgroundColor);
+  }
+
+  onCombinationNumbersChange() {
+    //console.log(this.combinationNumbers);
+    this.testService.setCombinationNumbers(this.combinationNumbers);
   }
 
   /**

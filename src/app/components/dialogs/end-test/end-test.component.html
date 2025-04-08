@@ -13,9 +13,9 @@
                 stimulusNumber: this.stimulusShowed, reactionTime: reactionTime, stimulusColor: this.stimulusColor.nombre, stimulusPosition: this.nextPosition.nombre
                 <tr *ngFor="let resultado of testData">
                     <td>{{ resultado.stimulusNumber }}</td>
-                    <td>{{resultado.stimulusColor}}</td>
+                    <td>{{ resultado.stimulusColor.hex }}</td>
                     <td>{{ resultado.reactionTime > 0 ? `${resultado.reactionTime} ms` : 'No pulsado'}}</td>
-                    <td>{{ resultado.stimulusPosition }}</td>
+                    <td>{{ resultado.stimulusPosition.nombre }}</td>
                 </tr>
             </tbody>
         </table>

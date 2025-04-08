@@ -1,0 +1,16 @@
+.test-container {
+    background-color: antiquewhite;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 95vh; /* Ocupa el 95% de la altura de la pantalla */
+    width: 95vw; /* Ocupa el 95% del ancho de la pantalla */
+    margin: auto; /* Centra el contenedor en la pantalla */
+    border: 2px solid black; /* Opcional: añade un borde para resaltar el contenedor */
+    box-sizing: border-box; /* Asegura que el padding y el borde no afecten las dimensiones */
+    border-radius: 6px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
