@@ -58,8 +58,8 @@
                 <tr *ngFor="let resultado of testData">
                     <td>{{ resultado.stimulusNumber }}</td>
                     <td>{{ resultado.verticalLineColor.hex }}</td>
-                    <td>{{ resultado.verticalLineLength }} cm</td>
-                    <td>{{ resultado.lineSpacing }} cm</td>
+                    <td>{{ resultado.verticalLineLength }} mm</td>
+                    <td>{{ resultado.lineSpacing }} mm</td>
                     <td>{{ resultado.clickedLine == 1 ? 'Vertical' : 'Horizontal' }} </td>
                     <td>{{ resultado.correctAnswer ? 'Correcto' : 'Falso' }}</td>
                 </tr>
